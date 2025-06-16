@@ -446,11 +446,13 @@ class GameViewModel {
  */
 class SkullKingGame {
     constructor() {
+        this.deferredPrompt = null;
         this.viewModel = new GameViewModel();
         this.init();
     }
     init() {
         this.setupEventListeners();
+        this.initializePWA();
         this.updateUI();
     }
     setupEventListeners() {
@@ -904,6 +906,64 @@ class SkullKingGame {
             if (bonusInput)
                 bonusInput.value = data.bonus.toString();
         }
+    }
+    // PWA Install Functionality
+    initializePWA() {
+        // Guard for test environment
+        if (typeof document === 'undefined')
+            return;
+        // Don't show if already in standalone mode (installed)
+        if ((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+            window.navigator.standalone) {
+            return;
+        }
+        // Show simple install button
+        this.showInstallButton();
+    }
+    showInstallButton() {
+        let installBtn = document.getElementById('install-app-btn');
+        if (!installBtn) {
+            installBtn = document.createElement('button');
+            installBtn.id = 'install-app-btn';
+            installBtn.className = 'install-app-btn';
+            installBtn.innerHTML = '📱 Install App';
+            installBtn.addEventListener('click', () => this.showInstallInstructions());
+            // Add to header
+            const header = document.querySelector('.header') || document.body;
+            header.appendChild(installBtn);
+        }
+        installBtn.style.display = 'block';
+    }
+    showInstallInstructions() {
+        // Show instructions for manual installation
+        let modal = document.getElementById('install-instructions-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'install-instructions-modal';
+            modal.className = 'install-modal';
+            modal.innerHTML = `
+                <div class="install-modal-content">
+                    <h3>📱 Add to Home Screen</h3>
+                    <div class="install-instructions">
+                        <p><strong>For Android Chrome:</strong></p>
+                        <ol>
+                            <li>Tap the menu (⋮) in browser</li>
+                            <li>Select "Add to Home screen"</li>
+                            <li>Tap "Add" to confirm</li>
+                        </ol>
+                        <p><strong>For iOS Safari:</strong></p>
+                        <ol>
+                            <li>Tap the share button (⎘)</li>
+                            <li>Scroll down and tap "Add to Home Screen"</li>
+                            <li>Tap "Add" to confirm</li>
+                        </ol>
+                    </div>
+                    <button class="install-modal-close" onclick="this.parentElement.parentElement.style.display='none'">✕ Close</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        modal.style.display = 'flex';
     }
     // Public method for testing the scoring logic
     testCalculateRoundScore(bid, actual, bonus, roundNumber) {
