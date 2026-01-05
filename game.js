@@ -22,19 +22,13 @@ const enTranslation = {
     landing_subtitle: "Perfect Skull King Scoring Solution",
     feature_mobile: "📱 Mobile Skull King Scorecard - Works on phones, tablets, and computers",
     feature_calculator: "🧮 Automatic Score Calculator - No more manual Skull King scoring errors",
+    feature_expansion: "🏴‍☠️ Full Expansion Support - 9 players, Graybeard, sea monsters, and expansion bonuses",
     feature_commentary: "🦜 Pirate Commentary - Entertaining feedback on your Skull King gameplay",
     feature_audio: "🔊 Audio Score Reader - Hear your Skull King scores announced",
     feature_saving: "💾 Game State Saving - Never lose your Skull King scoring progress",
     start_button: "Start Your Skull King Score Tracking",
     why_choose_title: "Why Choose Our Skull King Score Keeper?",
     why_choose_description: "Whether you're playing Skull King at home, at a game night, or in a tournament, our digital scorecard makes Skull King scoring effortless. Track bids, actual tricks, bonus points, and watch your Skull King scores calculate automatically. Perfect for Skull King enthusiasts who want accurate, fast scoring.",
-    // Player setup
-    name_crew_title: "Name Yer Crew",
-    add_pirate_button: "Add Pirate",
-    clear_all_button: "Clear All",
-    set_sail_button: "Set Sail!",
-    back_to_port_button: "Back to Port",
-    player_placeholder: "Pirate",
     // Game section
     current_bounty_title: "Current Bounty",
     read_scores_button: "🔊 Read Scores",
@@ -63,14 +57,18 @@ const enTranslation = {
     aye_button: "Aye",
     nay_button: "Nay",
     same_players_prefix: "Same Players -",
+    trick_mismatch_confirm_title: "⚠️ Trick Count Mismatch",
+    trick_mismatch_confirm_message: "{originalError}\n\nYe may be usin' optional cards or house rules that add or remove cards from the game, matey! Would ye like to proceed with this trick count anyway?",
     // Button labels
     new_game_button: "New Game",
     edit_round_button: "Edit Round {round}",
+    proceed_anyway_button: "Proceed Anyway",
+    check_again_button: "Check Again",
     // Error messages
     min_players_error: "Ye need at least 2 pirates to play, ye scurvy dog!",
-    max_players_error: "No more than 8 pirates can fit on this ship!",
+    max_players_error: "No more than {maxPlayers} pirates can fit on this ship!",
     duplicate_names_error: "Each pirate needs their own name, ye bilge rat!",
-    max_players_add_error: "The ship be full! Maximum 8 pirates allowed!",
+    max_players_add_error: "The ship be full! Maximum {maxPlayers} pirates allowed!",
     invalid_number_error: "{playerName} needs valid numbers for all fields, ye landlubber!",
     whole_numbers_error: "{playerName} can only use whole numbers, no half measures!",
     non_negative_error: "{playerName} can't use negative numbers, ye scallywag!",
@@ -125,7 +123,6 @@ const enTranslation = {
     // Footer
     disclaimer_title: "Disclaimer:",
     disclaimer_text_1: "This website is an independent fan-created score keeper for the Skull King card game. It is not affiliated with, endorsed by, or connected to Grandpa Beck's Games, the official publisher of Skull King. Skull King is a trademark of Grandpa Beck's Games.",
-    disclaimer_text_2: "This tool is provided for educational and entertainment purposes to help players track their game scores.",
     feedback_text: "For feedback, suggestions, or bug reports, contact:",
     // PWA Install
     add_to_home_title: "Add to Home Screen",
@@ -138,6 +135,14 @@ const enTranslation = {
     ios_step_2: "2. Select 'Add to Home Screen'",
     ios_step_3: "3. Tap 'Add' to confirm",
     close_button: "Close",
+    // Player setup
+    name_crew_title: "Name Yer Crew",
+    player_placeholder: "Pirate Name",
+    add_pirate_button: "Add Pirate",
+    clear_all_button: "Clear All",
+    set_sail_button: "Set Sail!",
+    back_to_port_button: "Back to Port",
+    game_options_title: "Game Options",
     // New game modal
     new_game_modal_title: "Start New Game?",
     new_game_modal_message: "Current game in progress. Start a new game?",
@@ -151,6 +156,11 @@ const enTranslation = {
     scoring_mode_normal_desc: "Traditional Skull King: Zero bid = 10×round, correct bid = 20×tricks + bonus",
     scoring_mode_rascal: "Rascal's Scoring",
     scoring_mode_rascal_desc: "Even-keeled scoring: 10 pts × cards dealt. Direct hit = full, off by 1 = half, off by 2+ = none",
+    scoring_mode_description: "Normal = exact bid scoring, Rascal = proportional scoring",
+    other_options_label: "Other Options",
+    expansion_mode_title: "Expansion Pack",
+    expansion_mode_desc: "Adds 9-player support, Stingray, Davy Jones, and new bonus cards",
+    expansion_mode_label: "Play with Expansion Pack (allows 9 players)",
     // Bonus calculator
     calc_button: "Calc",
     calculate_button: "Calculate",
@@ -163,9 +173,16 @@ const enTranslation = {
     bonus_label_sk_pirate: "Pirates captured by Skull King",
     bonus_label_mermaid_sk: "Skull King captured by Mermaid",
     bonus_label_loot: "Loot Alliances",
+    bonus_label_other: "House Rules / Other Bonus",
+    bonus_description_other: "Use for custom house rules or variant bonuses (±5 per click)",
     bonus_total_label: "Total Bonus:",
-    kraken_played: "🐙 Kraken played",
-    whale_played: "🐋 White Whale played",
+    // Expansion bonus labels
+    expansion_bonuses_header: "⚓ Expansion Bonuses",
+    bonus_label_seven: "7s Captured (Penalty)",
+    bonus_label_eight: "8s Captured (Bonus)",
+    bonus_label_firstmate: "First Mate Con Captured",
+    bonus_label_davyjones: "Davy Jones Sea Monsters",
+    trick_lost: "🚫 Trick lost (Kraken or Whale/Stingray with no winner)",
     bonus_clear_btn: "Clear",
     bonus_apply_btn: "Apply Bonus",
     bonus_error_bid_mismatch: "Arrr! Bonus only be allowed when yer bid equals actual tricks won!",
@@ -195,19 +212,13 @@ const deTranslation = {
     landing_subtitle: "Perfekte Skull King Wertungslösung",
     feature_mobile: "📱 Mobile Skull King Punktekarte - Funktioniert auf Handys, Tablets und Computern",
     feature_calculator: "🧮 Automatischer Punkterechner - Keine manuellen Skull King Wertungsfehler mehr",
+    feature_expansion: "🏴‍☠️ Volle Erweiterung - 9 Spieler, Graybeard, Seemonster und Erweiterungsboni",
     feature_commentary: "🦜 Piratenkommentare - Unterhaltsames Feedback zu Ihrem Skull King Spiel",
     feature_audio: "🔊 Audio Punkteansage - Hören Sie Ihre Skull King Punkte",
     feature_saving: "💾 Spielstand Speichern - Verlieren Sie nie Ihren Skull King Fortschritt",
     start_button: "Starten Sie Ihre Skull King Punkteverfolgung",
     why_choose_title: "Warum Unser Skull King Punktezähler?",
     why_choose_description: "Ob Sie Skull King zu Hause, bei einem Spieleabend oder bei einem Turnier spielen, unsere digitale Punktekarte macht die Skull King Wertung mühelos. Verfolgen Sie Gebote, gewonnene Stiche, Bonuspunkte und sehen Sie, wie Ihre Skull King Punkte automatisch berechnet werden.",
-    // Player setup
-    name_crew_title: "Benennt Eure Crew",
-    add_pirate_button: "Pirat Hinzufügen",
-    clear_all_button: "Alle Löschen",
-    set_sail_button: "Segel Setzen!",
-    back_to_port_button: "Zurück zum Hafen",
-    player_placeholder: "Pirat",
     // Game section
     current_bounty_title: "Aktuelle Beute",
     read_scores_button: "🔊 Punkte Vorlesen",
@@ -236,14 +247,18 @@ const deTranslation = {
     aye_button: "Aye",
     nay_button: "Nay",
     same_players_prefix: "Gleiche Spieler -",
+    trick_mismatch_confirm_title: "⚠️ Stichanzahl-Unstimmigkeit",
+    trick_mismatch_confirm_message: "{originalError}\n\nIhr verwendet möglicherweise optionale Karten oder Hausregeln, die Karten hinzufügen oder entfernen! Möchtet ihr trotzdem mit dieser Stichanzahl fortfahren?",
     // Button labels
     new_game_button: "Neues Spiel",
     edit_round_button: "Runde {round} Bearbeiten",
+    proceed_anyway_button: "Trotzdem Fortfahren",
+    check_again_button: "Nochmal Prüfen",
     // Error messages
     min_players_error: "Ihr braucht mindestens 2 Piraten zum Spielen!",
-    max_players_error: "Nicht mehr als 8 Piraten passen auf dieses Schiff!",
+    max_players_error: "Nicht mehr als {maxPlayers} Piraten passen auf dieses Schiff!",
     duplicate_names_error: "Jeder Pirat braucht seinen eigenen Namen!",
-    max_players_add_error: "Das Schiff ist voll! Maximal 8 Piraten erlaubt!",
+    max_players_add_error: "Das Schiff ist voll! Maximal {maxPlayers} Piraten erlaubt!",
     invalid_number_error: "{playerName} muss gültige Zahlen für alle Felder eingeben!",
     whole_numbers_error: "{playerName} kann nur ganze Zahlen verwenden, keine halben Sachen!",
     non_negative_error: "{playerName} kann keine negativen Zahlen verwenden!",
@@ -298,7 +313,6 @@ const deTranslation = {
     // Footer
     disclaimer_title: "Hinweis:",
     disclaimer_text_1: "Diese Website ist ein unabhängiger, von Fans erstellter Punktezähler für das Skull King Kartenspiel. Sie ist nicht mit Grandpa Beck's Games, dem offiziellen Herausgeber von Skull King, verbunden oder von diesem unterstützt. Skull King ist eine Marke von Grandpa Beck's Games.",
-    disclaimer_text_2: "Dieses Tool wird für Bildungs- und Unterhaltungszwecke bereitgestellt, um Spielern bei der Verfolgung ihrer Spielpunkte zu helfen.",
     feedback_text: "Für Feedback, Vorschläge oder Fehlerberichte kontaktieren Sie:",
     // PWA Install
     add_to_home_title: "Zum Startbildschirm Hinzufügen",
@@ -311,6 +325,14 @@ const deTranslation = {
     ios_step_2: "2. Wählen Sie 'Zum Home-Bildschirm'",
     ios_step_3: "3. Tippen Sie auf 'Hinzufügen' zur Bestätigung",
     close_button: "Schließen",
+    // Player setup
+    name_crew_title: "Mannschaft Benennen",
+    player_placeholder: "Piratenname",
+    add_pirate_button: "Pirat hinzufügen",
+    clear_all_button: "Alle Löschen",
+    set_sail_button: "In See stechen!",
+    back_to_port_button: "Zurück zum Hafen",
+    game_options_title: "Spieloptionen",
     // New game modal
     new_game_modal_title: "Neues Spiel Starten?",
     new_game_modal_message: "Aktuelles Spiel läuft. Neues Spiel starten?",
@@ -324,6 +346,11 @@ const deTranslation = {
     scoring_mode_normal_desc: "Traditionelle Skull King: Null-Gebot = 10×Runde, korrektes Gebot = 20×Stiche + Bonus",
     scoring_mode_rascal: "Schurken-Wertung",
     scoring_mode_rascal_desc: "Ausgeglichene Wertung: 10 Pkt × ausgeteilte Karten. Direkttreffer = voll, um 1 daneben = halb, um 2+ daneben = null",
+    scoring_mode_description: "Normal = exakte Gebotswertung, Schurke = proportionale Wertung",
+    other_options_label: "Weitere Optionen",
+    expansion_mode_title: "Erweiterungspaket",
+    expansion_mode_desc: "Fügt 9-Spieler-Unterstützung, Stachelrochen, Davy Jones und neue Bonuskarten hinzu",
+    expansion_mode_label: "Mit Erweiterungspaket spielen (erlaubt 9 Spieler)",
     // Bonus calculator
     calc_button: "Rechner",
     calculate_button: "Berechnen",
@@ -336,9 +363,16 @@ const deTranslation = {
     bonus_label_sk_pirate: "Piraten vom Skull King gefangen",
     bonus_label_mermaid_sk: "Skull King von Meerjungfrau gefangen",
     bonus_label_loot: "Beute-Allianzen",
+    bonus_label_other: "Hausregeln / Sonstiger Bonus",
+    bonus_description_other: "Für benutzerdefinierte Hausregeln oder Varianten-Boni verwenden (±5 pro Klick)",
     bonus_total_label: "Gesamt-Bonus:",
-    kraken_played: "🐙 Kraken gespielt",
-    whale_played: "🐋 Weißer Wal gespielt",
+    // Expansion bonus labels
+    expansion_bonuses_header: "⚓ Erweiterungs-Boni",
+    bonus_label_seven: "7er Gefangen (Strafe)",
+    bonus_label_eight: "8er Gefangen (Bonus)",
+    bonus_label_firstmate: "Erster Maat Con Gefangen",
+    bonus_label_davyjones: "Davy Jones Seemonster",
+    trick_lost: "🚫 Stich verloren (Kraken oder Wal/Rochen ohne Gewinner)",
     bonus_clear_btn: "Löschen",
     bonus_apply_btn: "Bonus Anwenden",
     bonus_error_bid_mismatch: "Arrr! Bonus nur erlaubt, wenn Gebot gleich gewonnene Stiche!",
@@ -368,19 +402,13 @@ const esTranslation = {
     landing_subtitle: "Solución Perfecta de Puntuación Skull King",
     feature_mobile: "📱 Tarjeta Skull King Móvil - Funciona en teléfonos, tablets y computadoras",
     feature_calculator: "🧮 Calculadora Automática - No más errores manuales de puntuación Skull King",
+    feature_expansion: "🏴‍☠️ Soporte Completo de Expansión - 9 jugadores, Graybeard, monstruos marinos y bonos de expansión",
     feature_commentary: "🦜 Comentarios Piratas - Retroalimentación entretenida sobre tu juego Skull King",
     feature_audio: "🔊 Lector de Audio - Escucha tus puntos de Skull King anunciados",
     feature_saving: "💾 Guardado del Estado - Nunca pierdas tu progreso de Skull King",
     start_button: "Comienza tu Seguimiento de Puntos Skull King",
     why_choose_title: "¿Por Qué Elegir Nuestro Contador Skull King?",
     why_choose_description: "Ya sea que juegues Skull King en casa, en una noche de juegos o en un torneo, nuestra tarjeta digital hace que la puntuación sea sin esfuerzo. Rastrea apuestas, bazas ganadas, puntos de bonificación y ve cómo se calculan automáticamente tus puntos de Skull King.",
-    // Player setup
-    name_crew_title: "Nombrad a Vuestra Tripulación",
-    add_pirate_button: "Añadir Pirata",
-    clear_all_button: "Borrar Todo",
-    set_sail_button: "¡Zarpar!",
-    back_to_port_button: "Volver al Puerto",
-    player_placeholder: "Pirata",
     // Game section
     current_bounty_title: "Botín Actual",
     read_scores_button: "🔊 Leer Puntos",
@@ -409,14 +437,18 @@ const esTranslation = {
     aye_button: "Sí",
     nay_button: "No",
     same_players_prefix: "Mismos Jugadores -",
+    trick_mismatch_confirm_title: "⚠️ Desajuste en Conteo de Bazas",
+    trick_mismatch_confirm_message: "{originalError}\n\n¡Puede que estéis usando cartas opcionales o reglas de la casa que añaden o quitan cartas del juego! ¿Queréis continuar con este conteo de bazas de todos modos?",
     // Button labels
     new_game_button: "Nuevo Juego",
     edit_round_button: "Editar Ronda {round}",
+    proceed_anyway_button: "Continuar De Todos Modos",
+    check_again_button: "Revisar De Nuevo",
     // Error messages
     min_players_error: "¡Necesitáis al menos 2 piratas para jugar!",
-    max_players_error: "¡No más de 8 piratas caben en este barco!",
+    max_players_error: "¡No más de {maxPlayers} piratas caben en este barco!",
     duplicate_names_error: "¡Cada pirata necesita su propio nombre!",
-    max_players_add_error: "¡El barco está lleno! Máximo 8 piratas permitidos!",
+    max_players_add_error: "¡El barco está lleno! Máximo {maxPlayers} piratas permitidos!",
     invalid_number_error: "¡{playerName} debe ingresar números válidos para todos los campos!",
     whole_numbers_error: "¡{playerName} solo puede usar números enteros, sin medias tintas!",
     non_negative_error: "¡{playerName} no puede usar números negativos!",
@@ -471,7 +503,6 @@ const esTranslation = {
     // Footer
     disclaimer_title: "Aviso:",
     disclaimer_text_1: "Este sitio web es un contador de puntos creado por fans independientes para el juego de cartas Skull King. No está afiliado, respaldado o conectado con Grandpa Beck's Games, el editor oficial de Skull King. Skull King es una marca registrada de Grandpa Beck's Games.",
-    disclaimer_text_2: "Esta herramienta se proporciona con fines educativos y de entretenimiento para ayudar a los jugadores a rastrear sus puntuaciones.",
     feedback_text: "Para comentarios, sugerencias o informes de errores, contacte:",
     // PWA Install
     add_to_home_title: "Añadir a Pantalla de Inicio",
@@ -484,6 +515,14 @@ const esTranslation = {
     ios_step_2: "2. Selecciona 'Añadir a pantalla de inicio'",
     ios_step_3: "3. Toca 'Añadir' para confirmar",
     close_button: "Cerrar",
+    // Player setup
+    name_crew_title: "Nombra Tu Tripulación",
+    player_placeholder: "Nombre de Pirata",
+    add_pirate_button: "Añadir Pirata",
+    clear_all_button: "Borrar Todo",
+    set_sail_button: "¡Zarpar!",
+    back_to_port_button: "Volver al Puerto",
+    game_options_title: "Opciones de Juego",
     // New game modal
     new_game_modal_title: "¿Comenzar Nuevo Juego?",
     new_game_modal_message: "Juego actual en progreso. ¿Comenzar un nuevo juego?",
@@ -497,6 +536,11 @@ const esTranslation = {
     scoring_mode_normal_desc: "Skull King tradicional: Apuesta cero = 10×ronda, apuesta correcta = 20×bazas + bonus",
     scoring_mode_rascal: "Puntuación Pícaro",
     scoring_mode_rascal_desc: "Puntuación equilibrada: 10 pts × cartas repartidas. Acierto = completo, fallo por 1 = mitad, fallo por 2+ = cero",
+    scoring_mode_description: "Normal = puntuación de apuesta exacta, Pícaro = puntuación proporcional",
+    other_options_label: "Otras Opciones",
+    expansion_mode_title: "Pack de Expansión",
+    expansion_mode_desc: "Añade soporte para 9 jugadores, Raya, Davy Jones y nuevas cartas de bonificación",
+    expansion_mode_label: "Jugar con Pack de Expansión (permite 9 jugadores)",
     // Bonus calculator
     calc_button: "Calc",
     calculate_button: "Calcular",
@@ -509,9 +553,16 @@ const esTranslation = {
     bonus_label_sk_pirate: "Piratas capturados por Rey Calavera",
     bonus_label_mermaid_sk: "Rey Calavera capturado por Sirena",
     bonus_label_loot: "Alianzas de Botín",
+    bonus_label_other: "Reglas de Casa / Bonus Otro",
+    bonus_description_other: "Usar para reglas de casa personalizadas o bonos variantes (±5 por clic)",
     bonus_total_label: "Bonus Total:",
-    kraken_played: "🐙 Kraken jugado",
-    whale_played: "🐋 Ballena Blanca jugada",
+    // Expansion bonus labels
+    expansion_bonuses_header: "⚓ Bonos de Expansión",
+    bonus_label_seven: "7s Capturados (Penalización)",
+    bonus_label_eight: "8s Capturados (Bonus)",
+    bonus_label_firstmate: "Primer Oficial Con Capturado",
+    bonus_label_davyjones: "Monstruos Marinos Davy Jones",
+    trick_lost: "🚫 Baza perdida (Kraken o Ballena/Raya sin ganador)",
     bonus_clear_btn: "Borrar",
     bonus_apply_btn: "Aplicar Bonus",
     bonus_error_bid_mismatch: "¡Arrr! ¡Bonus solo permitido cuando apuesta igual a bazas ganadas!",
@@ -544,6 +595,7 @@ const supportedLanguages = ['en', 'de', 'es'];
 // Translations will be included in the same file after compilation
 // Game constants
 const MAX_PLAYERS = 8;
+const MAX_PLAYERS_EXPANSION = 9;
 // Translation system class
 class GameTranslationSystem {
     constructor() {
@@ -669,6 +721,38 @@ class GameViewModel {
         // Also save as a separate preference
         localStorage.setItem('skull-king-scoring-mode', mode);
     }
+    // Expansion Mode Management
+    getExpansionMode() {
+        // Check saved preference
+        const savedPreference = localStorage.getItem('skull-king-expansion-mode');
+        if (savedPreference === 'true') {
+            return true;
+        }
+        else if (savedPreference === 'false') {
+            return false;
+        }
+        // Default to false
+        return false;
+    }
+    setExpansionMode(enabled) {
+        // If disabling expansion mode, remove excess players
+        if (!enabled) {
+            while (this.tempPlayers.length > MAX_PLAYERS) {
+                this.tempPlayers.pop();
+            }
+        }
+        this.state.expansionMode = enabled;
+        this.saveState();
+        // Also save as a separate preference
+        localStorage.setItem('skull-king-expansion-mode', enabled.toString());
+    }
+    isExpansionMode() {
+        // During active game, use state; otherwise use localStorage preference
+        if (this.state.expansionMode !== undefined) {
+            return this.state.expansionMode;
+        }
+        return this.getExpansionMode();
+    }
     // Graybeard Management
     isGraybeardActive() {
         return this.state.graybeardActive === true;
@@ -718,8 +802,10 @@ class GameViewModel {
         if (validNames.length < 2) {
             return this.t('min_players_error');
         }
-        if (validNames.length > MAX_PLAYERS) {
-            return this.t('max_players_error');
+        // Check max players based on expansion mode
+        const maxPlayers = this.getExpansionMode() ? MAX_PLAYERS_EXPANSION : MAX_PLAYERS;
+        if (validNames.length > maxPlayers) {
+            return this.t('max_players_error', { maxPlayers: maxPlayers.toString() });
         }
         // Check for duplicate names
         const uniqueNames = new Set(validNames.map(name => name.trim().toLowerCase()));
@@ -730,6 +816,7 @@ class GameViewModel {
         this.state.players = validNames.map(name => ({ name: name.trim(), score: 0 }));
         this.state.rounds = [];
         this.state.currentRound = 1;
+        this.state.expansionMode = this.getExpansionMode();
         // Automatically activate Graybeard for 2-player games
         this.state.graybeardActive = validNames.length === 2;
         this.saveState();
@@ -786,35 +873,35 @@ class GameViewModel {
         const targetRound = roundNumber || this.state.currentRound;
         // Check for invalid numbers (NaN)
         if (isNaN(bid) || isNaN(actual) || isNaN(bonus)) {
-            return this.t('invalid_number_error', { playerName });
+            return { status: 'error', message: this.t('invalid_number_error', { playerName }) };
         }
         // Integer validation
         if (!Number.isInteger(bid) || !Number.isInteger(actual) || !Number.isInteger(bonus)) {
-            return this.t('whole_numbers_error', { playerName });
+            return { status: 'error', message: this.t('whole_numbers_error', { playerName }) };
         }
-        // Basic validation
-        if (bid < 0 || actual < 0 || bonus < 0) {
-            return this.t('non_negative_error', { playerName });
+        // Basic validation (bonus can now be negative for house rule penalties)
+        if (bid < 0 || actual < 0) {
+            return { status: 'error', message: this.t('non_negative_error', { playerName }) };
         }
         // Round-specific validation: bids and actual tricks can't exceed available cards
         const maxTricks = this.getCardsPerRound(targetRound, this.state.players.length);
         if (bid > maxTricks) {
-            return this.t('bid_exceeds_tricks_error', {
-                playerName,
-                bid: bid.toString(),
-                maxTricks: maxTricks.toString(),
-                round: targetRound.toString(),
-                playerCount: this.state.players.length.toString()
-            });
+            return { status: 'error', message: this.t('bid_exceeds_tricks_error', {
+                    playerName,
+                    bid: bid.toString(),
+                    maxTricks: maxTricks.toString(),
+                    round: targetRound.toString(),
+                    playerCount: this.state.players.length.toString()
+                }) };
         }
         if (actual > maxTricks) {
-            return this.t('actual_exceeds_tricks_error', {
-                playerName,
-                maxTricks: maxTricks.toString(),
-                round: targetRound.toString(),
-                playerCount: this.state.players.length.toString(),
-                actual: actual.toString()
-            });
+            return { status: 'error', message: this.t('actual_exceeds_tricks_error', {
+                    playerName,
+                    maxTricks: maxTricks.toString(),
+                    round: targetRound.toString(),
+                    playerCount: this.state.players.length.toString(),
+                    actual: actual.toString()
+                }) };
         }
         // Bonus point validation
         if (bonus > 0) {
@@ -822,11 +909,11 @@ class GameViewModel {
             if (scoringMode === 'normal') {
                 // Traditional scoring: "Only awarded if you make your exact bid!"
                 if (bid !== actual) {
-                    return this.t('bonus_without_correct_bid_error', {
-                        playerName,
-                        bid: bid.toString(),
-                        actual: actual.toString()
-                    });
+                    return { status: 'error', message: this.t('bonus_without_correct_bid_error', {
+                            playerName,
+                            bid: bid.toString(),
+                            actual: actual.toString()
+                        }) };
                 }
             }
             else if (scoringMode === 'rascal') {
@@ -834,15 +921,15 @@ class GameViewModel {
                 // Full bonus for exact bid, half bonus for off by 1, no bonus for off by 2+
                 const difference = Math.abs(bid - actual);
                 if (difference > 1) {
-                    return this.t('bonus_without_correct_bid_error', {
-                        playerName,
-                        bid: bid.toString(),
-                        actual: actual.toString()
-                    });
+                    return { status: 'error', message: this.t('bonus_without_correct_bid_error', {
+                            playerName,
+                            bid: bid.toString(),
+                            actual: actual.toString()
+                        }) };
                 }
             }
         }
-        return null; // Valid
+        return { status: 'ok' };
     }
     // Round Management
     getCurrentRoundNumber() {
@@ -861,7 +948,8 @@ class GameViewModel {
         if (playerCount < 1) {
             throw new Error(`Invalid player count: ${playerCount}. Must have at least 1 player.`);
         }
-        const totalCards = 70;
+        // Base game: 70 cards, Expansion: 84 cards (adds 14 cards)
+        const totalCards = this.state.expansionMode ? 84 : 70;
         const idealCards = roundNumber;
         const cardsNeeded = idealCards * playerCount;
         // If we can deal the ideal number of cards, do so
@@ -875,63 +963,66 @@ class GameViewModel {
     getMaxTricksForCurrentRound() {
         return this.getCardsPerRound(this.state.currentRound, this.state.players.length);
     }
-    validateRoundData(data, roundNumber, krakenPlayed = false, whalePlayed = false, graybeardTricks = 0) {
+    validateRoundData(data, roundNumber, trickLost = false, graybeardTricks = 0, skipTrickValidation = false) {
         const targetRound = roundNumber || this.state.currentRound;
-        // Validate each player's input
+        // Validate each player's input (always required - these are "hard" validations)
         for (const [playerName, playerData] of Object.entries(data)) {
             const { bid, actual, bonus } = playerData;
-            const validationError = this.validateSinglePlayerInput(bid, actual, bonus, playerName, targetRound);
-            if (validationError) {
-                return validationError;
+            const validationResult = this.validateSinglePlayerInput(bid, actual, bonus, playerName, targetRound);
+            if (validationResult.status !== 'ok') {
+                return validationResult;
             }
         }
-        // Validate Graybeard's tricks if active
+        // Validate Graybeard's tricks if active (always required - these are "hard" validations)
         if (this.isGraybeardActive()) {
             if (graybeardTricks < 0) {
-                return this.t('graybeard_negative_tricks_error', { fallback: "Graybeard's tricks cannot be negative!" });
+                return { status: 'error', message: this.t('graybeard_negative_tricks_error', { fallback: "Graybeard's tricks cannot be negative!" }) };
             }
             const maxTricks = this.getCardsPerRound(targetRound, this.state.players.length);
             if (graybeardTricks > maxTricks) {
-                return this.t('graybeard_exceeds_tricks_error', {
-                    fallback: "Graybeard cannot win more than {maxTricks} tricks!",
-                    maxTricks: maxTricks.toString()
-                });
+                return { status: 'error', message: this.t('graybeard_exceeds_tricks_error', {
+                        fallback: "Graybeard cannot win more than {maxTricks} tricks!",
+                        maxTricks: maxTricks.toString()
+                    }) };
             }
         }
-        // Validate that total actual wins equals the number of tricks available (minus destroyed tricks)
-        // getCardsPerRound returns cards per player, which equals total tricks in the round
-        const totalTricks = this.getCardsPerRound(targetRound, this.state.players.length);
-        const destroyedTricks = (krakenPlayed ? 1 : 0) + (whalePlayed ? 1 : 0);
-        const expectedTricks = totalTricks - destroyedTricks;
-        const totalActualWins = Object.values(data).reduce((sum, playerData) => sum + playerData.actual, 0);
-        // Include Graybeard's tricks in the total if active
-        const totalWinsIncludingGraybeard = totalActualWins + (this.isGraybeardActive() ? graybeardTricks : 0);
-        if (totalWinsIncludingGraybeard !== expectedTricks) {
-            const errorKey = this.isGraybeardActive() ? 'total_tricks_mismatch_with_graybeard_error' : 'total_tricks_mismatch_error';
-            return this.t(errorKey, {
-                totalActual: totalWinsIncludingGraybeard.toString(),
-                maxTricks: expectedTricks.toString(),
-                round: targetRound.toString(),
-                playerCount: this.state.players.length.toString(),
-                fallback: this.isGraybeardActive() ?
-                    `Total tricks won (${totalWinsIncludingGraybeard} including Graybeard) must equal ${expectedTricks} for round ${targetRound}!` :
-                    `Total tricks won (${totalWinsIncludingGraybeard}) must equal ${expectedTricks} for round ${targetRound} with ${this.state.players.length} players!`
-            });
+        // Validate that total actual wins equals the number of tricks available (minus lost tricks)
+        // This is a "soft" validation that can be skipped if user confirms (for optional cards/house rules)
+        if (!skipTrickValidation) {
+            // getCardsPerRound returns cards per player, which equals total tricks in the round
+            const totalTricks = this.getCardsPerRound(targetRound, this.state.players.length);
+            // Trick lost: Kraken or Whale/Stingray with no winner (reduces tricks by 1)
+            const lostTricks = trickLost ? 1 : 0;
+            const expectedTricks = totalTricks - lostTricks;
+            const totalActualWins = Object.values(data).reduce((sum, playerData) => sum + playerData.actual, 0);
+            // Include Graybeard's tricks in the total if active
+            const totalWinsIncludingGraybeard = totalActualWins + (this.isGraybeardActive() ? graybeardTricks : 0);
+            if (totalWinsIncludingGraybeard !== expectedTricks) {
+                const errorKey = this.isGraybeardActive() ? 'total_tricks_mismatch_with_graybeard_error' : 'total_tricks_mismatch_error';
+                return { status: 'mismatch_tricks_round', message: this.t(errorKey, {
+                        totalActual: totalWinsIncludingGraybeard.toString(),
+                        maxTricks: expectedTricks.toString(),
+                        round: targetRound.toString(),
+                        playerCount: this.state.players.length.toString(),
+                        fallback: this.isGraybeardActive() ?
+                            `Total tricks won (${totalWinsIncludingGraybeard} including Graybeard) must equal ${expectedTricks} for round ${targetRound}!` :
+                            `Total tricks won (${totalWinsIncludingGraybeard}) must equal ${expectedTricks} for round ${targetRound} with ${this.state.players.length} players!`
+                    }) };
+            }
         }
-        return null; // Valid
+        return { status: 'ok' };
     }
-    addRound(data, krakenPlayed = false, whalePlayed = false, graybeardTricks = 0) {
-        const validationError = this.validateRoundData(data, undefined, krakenPlayed, whalePlayed, graybeardTricks);
-        if (validationError) {
-            return validationError;
+    addRound(data, trickLost = false, graybeardTricks = 0, skipTrickValidation = false) {
+        const validationResult = this.validateRoundData(data, undefined, trickLost, graybeardTricks, skipTrickValidation);
+        if (validationResult.status !== 'ok') {
+            return validationResult;
         }
         const roundData = {
             roundNumber: this.state.currentRound,
             playerData: [],
             commentary: '',
-            krakenPlayed,
-            whalePlayed,
-            graybeardTricksWon: this.isGraybeardActive() ? graybeardTricks : 0
+            trickLost,
+            graybeardTricksWon: this.isGraybeardActive() ? graybeardTricks : undefined
         };
         // Process each player's data
         for (const player of this.state.players) {
@@ -973,7 +1064,7 @@ class GameViewModel {
                 value: this.state.players.length
             });
         }
-        return null; // Success
+        return { status: 'ok' };
     }
     removeLastRound() {
         if (this.state.rounds.length === 0) {
@@ -1006,7 +1097,11 @@ class GameViewModel {
                 bonus: playerData.bonus
             };
         }
-        return result;
+        return {
+            playerData: result,
+            trickLost: lastRound.trickLost || false,
+            graybeardTricksWon: lastRound.graybeardTricksWon || 0
+        };
     }
     // Modal Management
     setModalConfirmCallback(callback) {
@@ -1290,9 +1385,18 @@ class SkullKingGame {
             mermaidPirate: 0,
             skullPirate: 0,
             mermaidSkull: 0,
-            loot: 0
+            loot: 0,
+            other: 0
+        };
+        // Expansion pack bonus counters
+        this.expansionBonusCounters = {
+            sevenCaptured: 0, // -5 each, max 4
+            eightCaptured: 0, // +5 each, max 4
+            firstMateCon: 0, // +30, max 1
+            davyJonesMonsters: 0 // +20 each, max 3
         };
         this.playerBonusData = {};
+        this.playerExpansionBonusData = {};
         this.viewModel = new GameViewModel();
         this.loadSpeechSpeed();
         this.init();
@@ -1354,8 +1458,9 @@ class SkullKingGame {
     }
     handleAddPlayer() {
         const tempPlayers = this.viewModel.getTempPlayers();
-        if (tempPlayers.length >= MAX_PLAYERS) {
-            this.showError(this.t('max_players_add_error'));
+        const maxPlayers = this.viewModel.getExpansionMode() ? MAX_PLAYERS_EXPANSION : MAX_PLAYERS;
+        if (tempPlayers.length >= maxPlayers) {
+            this.showError(this.t('max_players_add_error', { maxPlayers: maxPlayers.toString() }));
             return;
         }
         this.viewModel.addTempPlayer();
@@ -1373,8 +1478,9 @@ class SkullKingGame {
         // Check if Enter key was pressed
         if (event.key === 'Enter') {
             const tempPlayers = this.viewModel.getTempPlayers();
+            const maxPlayers = this.viewModel.getExpansionMode() ? MAX_PLAYERS_EXPANSION : MAX_PLAYERS;
             // Only add new player if we're on the last input and under the limit
-            if (index === tempPlayers.length - 1 && tempPlayers.length < MAX_PLAYERS) {
+            if (index === tempPlayers.length - 1 && tempPlayers.length < maxPlayers) {
                 this.handleAddPlayer();
             }
         }
@@ -1394,15 +1500,13 @@ class SkullKingGame {
         }
         this.updateUI();
     }
-    handleAddRound() {
+    handleAddRound(skipTrickValidation = false) {
         var _a;
         const gameState = this.viewModel.getGameState();
         const roundData = this.collectRoundData(gameState.players);
-        // Get expansion card checkbox states
-        const krakenCheckbox = document.getElementById('kraken-played');
-        const whaleCheckbox = document.getElementById('whale-played');
-        const krakenPlayed = (krakenCheckbox === null || krakenCheckbox === void 0 ? void 0 : krakenCheckbox.checked) || false;
-        const whalePlayed = (whaleCheckbox === null || whaleCheckbox === void 0 ? void 0 : whaleCheckbox.checked) || false;
+        // Get expansion card checkbox state
+        const trickLostCheckbox = document.getElementById('trick-lost');
+        const trickLost = (trickLostCheckbox === null || trickLostCheckbox === void 0 ? void 0 : trickLostCheckbox.checked) || false;
         // Get Graybeard's tricks if active
         let graybeardTricks = 0;
         if (this.viewModel.isGraybeardActive()) {
@@ -1410,18 +1514,31 @@ class SkullKingGame {
             const graybeardValue = ((_a = graybeardInput === null || graybeardInput === void 0 ? void 0 : graybeardInput.value) === null || _a === void 0 ? void 0 : _a.trim()) || '0';
             graybeardTricks = parseInt(graybeardValue);
         }
-        const error = this.viewModel.addRound(roundData, krakenPlayed, whalePlayed, graybeardTricks);
-        if (error) {
-            this.showError(error);
+        const result = this.viewModel.addRound(roundData, trickLost, graybeardTricks, skipTrickValidation);
+        if (result.status !== 'ok') {
+            // Check if this is a trick validation error (can be overridden with confirmation)
+            if (result.status === 'mismatch_tricks_round' && !skipTrickValidation) {
+                // Show confirmation dialog for trick count mismatch
+                const title = this.t('trick_mismatch_confirm_title');
+                const message = this.t('trick_mismatch_confirm_message', {
+                    originalError: result.message,
+                    fallback: `${result.message}\n\nYou may be using optional cards or house rules that add/remove cards from the game. Would you like to proceed with this trick count anyway?`
+                });
+                this.showTrickMismatchConfirmation(title, message, () => {
+                    // User confirmed - retry with skipTrickValidation=true
+                    this.handleAddRound(true);
+                });
+                return;
+            }
+            // For all other errors (or if already tried to skip), show regular error
+            this.showError(result.message);
             return;
         }
         this.updateUI();
         this.clearRoundInputs();
-        // Clear expansion checkboxes
-        if (krakenCheckbox)
-            krakenCheckbox.checked = false;
-        if (whaleCheckbox)
-            whaleCheckbox.checked = false;
+        // Clear expansion checkbox
+        if (trickLostCheckbox)
+            trickLostCheckbox.checked = false;
         this.showCommentary();
         // Scroll to the scores section after recording round
         const scoresSection = document.querySelector('.current-scores');
@@ -1443,6 +1560,12 @@ class SkullKingGame {
         const scoringModeInput = document.getElementById(`scoring-${scoringMode}`);
         if (scoringModeInput) {
             scoringModeInput.checked = true;
+        }
+        // Restore expansion mode selection
+        const expansionMode = this.viewModel.getExpansionMode();
+        const expansionModeCheckbox = document.getElementById('expansion-mode-checkbox');
+        if (expansionModeCheckbox) {
+            expansionModeCheckbox.checked = expansionMode;
         }
     }
     confirmNewGame() {
@@ -1487,6 +1610,7 @@ class SkullKingGame {
                 this.updateRoundInputs(gameState.players, gameState.currentRound);
             }
             this.updatePreviousRounds(gameState.rounds);
+            // Show/hide expansion-only UI elements
             // Show commentary if we have rounds
             if (gameState.rounds.length > 0) {
                 this.showCommentary();
@@ -1542,9 +1666,10 @@ class SkullKingGame {
                 <button class="btn-remove" onclick="game.removePlayer(${index})" title="Remove player">✕</button>
             </div>
         `).join('');
-        // Hide/show Add Pirate button based on player count
+        // Hide/show Add Pirate button based on player count and expansion mode
         if (addPlayerBtn) {
-            if (tempPlayers.length >= MAX_PLAYERS) {
+            const maxPlayers = this.viewModel.getExpansionMode() ? MAX_PLAYERS_EXPANSION : MAX_PLAYERS;
+            if (tempPlayers.length >= maxPlayers) {
                 addPlayerBtn.style.display = 'none';
             }
             else {
@@ -1636,13 +1761,12 @@ class SkullKingGame {
         container.innerHTML = sortedRounds.map((round, index) => {
             // Build expansion icons string
             let expansionIcons = '';
-            if (round.krakenPlayed || round.whalePlayed) {
-                const icons = [];
-                if (round.krakenPlayed)
-                    icons.push('🐙');
-                if (round.whalePlayed)
-                    icons.push('🐋');
-                expansionIcons = `<span class="round-expansion-icons">${icons.join('')}</span>`;
+            if (round.trickLost) {
+                expansionIcons = `<span class="round-expansion-icons">🚫</span>`;
+            }
+            // Backward compatibility: handle old saved games with separate properties
+            else if (round.krakenPlayed || round.trickDiscarded) {
+                expansionIcons = `<span class="round-expansion-icons">🚫</span>`;
             }
             return `
             <div class="round-display parchment">
@@ -1769,6 +1893,46 @@ class SkullKingGame {
         messageEl.textContent = message;
         // Show standard buttons
         modalButtons === null || modalButtons === void 0 ? void 0 : modalButtons.classList.remove('hidden');
+        modal.classList.remove('hidden');
+    }
+    showTrickMismatchConfirmation(title, message, onConfirm) {
+        const modal = document.getElementById('modal');
+        const titleEl = document.getElementById('modal-title');
+        const messageEl = document.getElementById('modal-message');
+        const modalButtons = document.getElementById('modal-buttons');
+        const modalConfirm = document.getElementById('modal-confirm');
+        const modalCancel = document.getElementById('modal-cancel');
+        if (!modal || !titleEl || !messageEl)
+            return;
+        titleEl.textContent = title;
+        messageEl.textContent = message;
+        modalButtons === null || modalButtons === void 0 ? void 0 : modalButtons.classList.remove('hidden');
+        // Customize buttons for this specific confirmation
+        if (modalConfirm && modalCancel) {
+            // Red button for "Proceed Anyway" (warning - user is overriding validation)
+            modalConfirm.textContent = this.t('proceed_anyway_button', { fallback: 'Proceed Anyway' });
+            modalConfirm.classList.add('btn-warning');
+            modalConfirm.classList.remove('btn-primary');
+            // Green button for "Check Again" (safe option - return to fix)
+            modalCancel.textContent = this.t('check_again_button', { fallback: 'Check Again' });
+            modalCancel.classList.add('btn-safe');
+            modalCancel.classList.remove('btn-secondary');
+            modalCancel.style.display = 'inline-block';
+        }
+        // Set callback for confirmation
+        this.viewModel.setModalConfirmCallback(() => {
+            // Reset button styles after confirmation
+            if (modalConfirm && modalCancel) {
+                modalConfirm.classList.remove('btn-warning');
+                modalConfirm.classList.add('btn-primary');
+                modalConfirm.textContent = this.t('aye_button');
+                modalCancel.classList.remove('btn-safe');
+                modalCancel.classList.add('btn-secondary');
+                modalCancel.textContent = this.t('nay_button');
+            }
+            // Execute the confirmation action
+            onConfirm();
+        });
         modal.classList.remove('hidden');
     }
     showErrorModal(message) {
@@ -1967,8 +2131,8 @@ class SkullKingGame {
         const actual = parseInt(actualValue);
         const bonus = bonusValue ? parseInt(bonusValue) : 0;
         // Use the centralized validation
-        const validationError = this.viewModel.validateSinglePlayerInput(bid, actual, bonus, playerName);
-        if (validationError) {
+        const validationResult = this.viewModel.validateSinglePlayerInput(bid, actual, bonus, playerName);
+        if (validationResult.status !== 'ok') {
             scoreDisplay.textContent = '-';
             scoreDisplay.className = 'computed-score invalid';
             return;
@@ -2007,8 +2171,8 @@ class SkullKingGame {
         const players = this.viewModel.getPlayers();
         const playerName = ((_a = players[playerIndex]) === null || _a === void 0 ? void 0 : _a.name) || '';
         // Use the centralized validation
-        const validationError = this.viewModel.validateSinglePlayerInput(bid, actual, bonus, playerName);
-        if (validationError) {
+        const validationResult = this.viewModel.validateSinglePlayerInput(bid, actual, bonus, playerName);
+        if (validationResult.status !== 'ok') {
             scoreDisplay.textContent = '-';
             scoreDisplay.className = 'computed-score invalid';
             return;
@@ -2024,6 +2188,11 @@ class SkullKingGame {
     // Public API for HTML event handlers
     updateTempPlayer(index, value) {
         this.viewModel.updateTempPlayer(index, value);
+    }
+    handleExpansionModeToggle(enabled) {
+        this.viewModel.setExpansionMode(enabled);
+        // Update player inputs to reflect new max player limit
+        this.updatePlayerInputs();
     }
     removePlayer(index) {
         this.viewModel.removeTempPlayer(index);
@@ -2094,7 +2263,7 @@ class SkullKingGame {
         this.updateUI();
         // Populate the inputs with the removed round's data for editing
         const players = this.viewModel.getPlayers();
-        for (const [playerName, data] of Object.entries(lastRoundData)) {
+        for (const [playerName, data] of Object.entries(lastRoundData.playerData)) {
             // Find player index by name
             const playerIndex = players.findIndex((p) => p.name === playerName);
             if (playerIndex === -1)
@@ -2110,8 +2279,8 @@ class SkullKingGame {
             if (bonusButton && bonusValueEl) {
                 bonusButton.setAttribute('data-bonus-value', data.bonus.toString());
                 bonusValueEl.textContent = data.bonus.toString();
-                // Update styling based on whether bonus is applied
-                if (data.bonus > 0) {
+                // Update styling based on whether bonus is applied (positive or negative)
+                if (data.bonus !== 0) {
                     bonusValueEl.classList.remove('no-bonus');
                 }
                 else {
@@ -2120,6 +2289,18 @@ class SkullKingGame {
             }
             // Update the computed score for this player
             this.updateRoundScoreInternalByIndex(playerIndex);
+        }
+        // Restore expansion card checkbox state
+        const trickLostCheckbox = document.getElementById('trick-lost');
+        if (trickLostCheckbox) {
+            trickLostCheckbox.checked = lastRoundData.trickLost;
+        }
+        // Restore Graybeard tricks input if Graybeard is active
+        if (this.viewModel.isGraybeardActive()) {
+            const graybeardInput = document.getElementById('graybeard-tricks');
+            if (graybeardInput) {
+                graybeardInput.value = lastRoundData.graybeardTricksWon.toString();
+            }
         }
         // Scroll to the round inputs section for editing
         const roundInputsSection = document.getElementById('new-round');
@@ -2319,9 +2500,6 @@ class SkullKingGame {
         const disclaimerText1 = document.getElementById('disclaimer-text-1');
         if (disclaimerText1)
             disclaimerText1.textContent = this.t('disclaimer_text_1');
-        const disclaimerText2 = document.getElementById('disclaimer-text-2');
-        if (disclaimerText2)
-            disclaimerText2.textContent = this.t('disclaimer_text_2');
         const feedbackText = document.getElementById('feedback-text');
         if (feedbackText)
             feedbackText.textContent = this.t('feedback_text');
@@ -2430,11 +2608,30 @@ class SkullKingGame {
                 mermaidPirate: 0,
                 skullPirate: 0,
                 mermaidSkull: 0,
-                loot: 0
+                loot: 0,
+                other: 0
+            };
+        }
+        // Restore or reset expansion bonuses
+        if (this.playerExpansionBonusData[playerIndex]) {
+            this.expansionBonusCounters = Object.assign({}, this.playerExpansionBonusData[playerIndex]);
+        }
+        else {
+            this.expansionBonusCounters = {
+                sevenCaptured: 0,
+                eightCaptured: 0,
+                firstMateCon: 0,
+                davyJonesMonsters: 0
             };
         }
         // Update UI with restored or reset values
         this.updateBonusCountersUI();
+        this.updateExpansionBonusCountersUI();
+        // Show/hide expansion tab based on mode
+        const expansionTab = document.getElementById('bonus-tab-expansion');
+        if (expansionTab) {
+            expansionTab.style.display = this.viewModel.isExpansionMode() ? '' : 'none';
+        }
         // Show modal
         const modal = document.getElementById('bonus-modal-overlay');
         if (modal) {
@@ -2453,7 +2650,13 @@ class SkullKingGame {
             const pointsEl = document.getElementById(`points-${key}`);
             if (pointsEl) {
                 const points = this.calculateBonusPoints(key, count);
-                pointsEl.textContent = points.toString();
+                // For 'other', show sign explicitly; for others, they're always positive
+                if (key === 'other') {
+                    pointsEl.textContent = (points >= 0 ? '+' : '') + points.toString();
+                }
+                else {
+                    pointsEl.textContent = points.toString();
+                }
             }
         });
         // Update button states
@@ -2468,7 +2671,8 @@ class SkullKingGame {
             mermaidPirate: 20,
             skullPirate: 30,
             mermaidSkull: 40,
-            loot: 20
+            loot: 20,
+            other: 5
         };
         return count * pointsMap[type];
     }
@@ -2479,6 +2683,106 @@ class SkullKingGame {
         }
         // Don't clear counters on close - keep them for persistence
     }
+    switchBonusTab(tabId) {
+        // Update tab buttons
+        document.querySelectorAll('.bonus-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.getAttribute('data-tab') === tabId);
+        });
+        // Update tab panels
+        document.querySelectorAll('.bonus-tab-panel').forEach(panel => {
+            panel.classList.toggle('active', panel.id === tabId);
+        });
+    }
+    // Expansion bonus calculation methods
+    calculateExpansionBonusPoints(type, count) {
+        const pointsMap = {
+            sevenCaptured: -5, // Penalty
+            eightCaptured: 5, // Bonus
+            firstMateCon: 30, // Fixed bonus
+            davyJonesMonsters: 20 // Per monster
+        };
+        return count * pointsMap[type];
+    }
+    updateExpansionBonusCounter(type, delta) {
+        const maxLimits = {
+            sevenCaptured: 4,
+            eightCaptured: 4,
+            firstMateCon: 1,
+            davyJonesMonsters: 3
+        };
+        const newValue = this.expansionBonusCounters[type] + delta;
+        this.expansionBonusCounters[type] = Math.max(0, Math.min(maxLimits[type], newValue));
+        // Update UI
+        const counterEl = document.getElementById(`counter-${type}`);
+        if (counterEl) {
+            counterEl.textContent = this.expansionBonusCounters[type].toString();
+        }
+        // Update points display
+        const pointsEl = document.getElementById(`points-${type}`);
+        if (pointsEl) {
+            const points = this.calculateExpansionBonusPoints(type, this.expansionBonusCounters[type]);
+            pointsEl.textContent = (points >= 0 ? '+' : '') + points.toString();
+        }
+        // Update button states and total
+        this.updateExpansionBonusButtonStates();
+        this.updateBonusTotal();
+    }
+    calculateExpansionBonusTotal() {
+        if (!this.viewModel.isExpansionMode()) {
+            return 0;
+        }
+        return this.calculateExpansionBonusPoints('sevenCaptured', this.expansionBonusCounters.sevenCaptured) +
+            this.calculateExpansionBonusPoints('eightCaptured', this.expansionBonusCounters.eightCaptured) +
+            this.calculateExpansionBonusPoints('firstMateCon', this.expansionBonusCounters.firstMateCon) +
+            this.calculateExpansionBonusPoints('davyJonesMonsters', this.expansionBonusCounters.davyJonesMonsters);
+    }
+    calculateGrandBonusTotal() {
+        const baseTotal = this.bonusCounters.standard14 * 10 +
+            this.bonusCounters.black14 * 20 +
+            this.bonusCounters.mermaidPirate * 20 +
+            this.bonusCounters.skullPirate * 30 +
+            this.bonusCounters.mermaidSkull * 40 +
+            this.bonusCounters.loot * 20 +
+            this.bonusCounters.other * 5;
+        const expansionTotal = this.calculateExpansionBonusTotal();
+        return baseTotal + expansionTotal;
+    }
+    updateExpansionBonusButtonStates() {
+        const maxLimits = {
+            sevenCaptured: 4,
+            eightCaptured: 4,
+            firstMateCon: 1,
+            davyJonesMonsters: 3
+        };
+        Object.keys(this.expansionBonusCounters).forEach(key => {
+            const type = key;
+            const count = this.expansionBonusCounters[type];
+            const max = maxLimits[type];
+            const incrementBtn = document.querySelector(`button[onclick="game.updateExpansionBonusCounter('${type}', 1)"]`);
+            const decrementBtn = document.querySelector(`button[onclick="game.updateExpansionBonusCounter('${type}', -1)"]`);
+            if (incrementBtn) {
+                incrementBtn.disabled = count >= max;
+            }
+            if (decrementBtn) {
+                decrementBtn.disabled = count <= 0;
+            }
+        });
+    }
+    updateExpansionBonusCountersUI() {
+        Object.keys(this.expansionBonusCounters).forEach(key => {
+            const type = key;
+            const counterEl = document.getElementById(`counter-${type}`);
+            if (counterEl) {
+                counterEl.textContent = this.expansionBonusCounters[type].toString();
+            }
+            const pointsEl = document.getElementById(`points-${type}`);
+            if (pointsEl) {
+                const points = this.calculateExpansionBonusPoints(type, this.expansionBonusCounters[type]);
+                pointsEl.textContent = (points >= 0 ? '+' : '') + points.toString();
+            }
+        });
+        this.updateExpansionBonusButtonStates();
+    }
     updateBonusCounter(type, delta) {
         // Define maximum limits for each bonus type
         const maxLimits = {
@@ -2487,11 +2791,22 @@ class SkullKingGame {
             mermaidPirate: 6, // Pirates captured by Mermaid
             skullPirate: 6, // Pirates captured by Skull King
             mermaidSkull: 1, // Skull King captured by Mermaid
-            loot: 2 // Loot cards (max 2 in deck)
+            loot: 2, // Loot cards (max 2 in deck)
+            other: 99 // House rules (high limit for flexibility)
+        };
+        // Minimum limits (most are 0, but 'other' allows negatives for penalties)
+        const minLimits = {
+            standard14: 0,
+            black14: 0,
+            mermaidPirate: 0,
+            skullPirate: 0,
+            mermaidSkull: 0,
+            loot: 0,
+            other: -99 // Allow negative for house rule penalties
         };
         // Update counter value with min/max constraints
         const newValue = this.bonusCounters[type] + delta;
-        this.bonusCounters[type] = Math.max(0, Math.min(maxLimits[type], newValue));
+        this.bonusCounters[type] = Math.max(minLimits[type], Math.min(maxLimits[type], newValue));
         // Update UI
         const counterEl = document.getElementById(`counter-${type}`);
         if (counterEl) {
@@ -2506,9 +2821,17 @@ class SkullKingGame {
                 mermaidPirate: 20,
                 skullPirate: 30,
                 mermaidSkull: 40,
-                loot: 20
+                loot: 20,
+                other: 5
             };
-            pointsEl.textContent = (this.bonusCounters[type] * multipliers[type]).toString();
+            const points = this.bonusCounters[type] * multipliers[type];
+            // For 'other', show sign explicitly; for others, they're always positive
+            if (type === 'other') {
+                pointsEl.textContent = (points >= 0 ? '+' : '') + points.toString();
+            }
+            else {
+                pointsEl.textContent = points.toString();
+            }
         }
         // Update button states
         this.updateBonusButtonStates();
@@ -2522,13 +2845,24 @@ class SkullKingGame {
             mermaidPirate: 6,
             skullPirate: 6,
             mermaidSkull: 1,
-            loot: 2
+            loot: 2,
+            other: 99
+        };
+        const minLimits = {
+            standard14: 0,
+            black14: 0,
+            mermaidPirate: 0,
+            skullPirate: 0,
+            mermaidSkull: 0,
+            loot: 0,
+            other: -99
         };
         // Update button states for each bonus type
         Object.keys(this.bonusCounters).forEach(key => {
             const type = key;
             const count = this.bonusCounters[type];
             const max = maxLimits[type];
+            const min = minLimits[type];
             // Get increment and decrement buttons
             const incrementBtn = document.querySelector(`button[onclick="game.updateBonusCounter('${type}', 1)"]`);
             const decrementBtn = document.querySelector(`button[onclick="game.updateBonusCounter('${type}', -1)"]`);
@@ -2537,17 +2871,12 @@ class SkullKingGame {
                 incrementBtn.disabled = count >= max;
             }
             if (decrementBtn) {
-                decrementBtn.disabled = count <= 0;
+                decrementBtn.disabled = count <= min;
             }
         });
     }
     updateBonusTotal() {
-        const total = this.bonusCounters.standard14 * 10 +
-            this.bonusCounters.black14 * 20 +
-            this.bonusCounters.mermaidPirate * 20 +
-            this.bonusCounters.skullPirate * 30 +
-            this.bonusCounters.mermaidSkull * 40 +
-            this.bonusCounters.loot * 20;
+        const total = this.calculateGrandBonusTotal();
         const totalEl = document.getElementById('bonus-total-value');
         if (totalEl) {
             totalEl.textContent = total.toString();
@@ -2555,7 +2884,9 @@ class SkullKingGame {
     }
     clearBonusCalculator() {
         this.clearBonusCounters();
+        this.clearExpansionBonusCounters();
         this.updateBonusButtonStates();
+        this.updateExpansionBonusButtonStates();
         this.updateBonusTotal();
     }
     clearBonusCounters() {
@@ -2572,22 +2903,31 @@ class SkullKingGame {
             }
         }
     }
+    clearExpansionBonusCounters() {
+        // Reset all expansion counters
+        for (const key in this.expansionBonusCounters) {
+            this.expansionBonusCounters[key] = 0;
+            const counterEl = document.getElementById(`counter-${key}`);
+            if (counterEl) {
+                counterEl.textContent = '0';
+            }
+            const pointsEl = document.getElementById(`points-${key}`);
+            if (pointsEl) {
+                pointsEl.textContent = '+0';
+            }
+        }
+    }
     applyBonusCalculator() {
         if (this.currentBonusPlayerIndex === -1)
             return;
-        // Calculate total bonus
-        const total = this.bonusCounters.standard14 * 10 +
-            this.bonusCounters.black14 * 20 +
-            this.bonusCounters.mermaidPirate * 20 +
-            this.bonusCounters.skullPirate * 30 +
-            this.bonusCounters.mermaidSkull * 40 +
-            this.bonusCounters.loot * 20;
+        // Calculate total bonus including expansion
+        const total = this.calculateGrandBonusTotal();
         // Update the bonus value display
         const bonusValueEl = document.getElementById(`bonus-value-${this.currentBonusPlayerIndex}`);
         if (bonusValueEl) {
             bonusValueEl.textContent = total.toString();
-            // Remove gray styling if bonus is applied, add it back if bonus is 0
-            if (total > 0) {
+            // Remove gray styling if bonus is applied (positive or negative), add it back if bonus is 0
+            if (total !== 0) {
                 bonusValueEl.classList.remove('no-bonus');
             }
             else {
@@ -2604,6 +2944,11 @@ class SkullKingGame {
             this.playerBonusData = {};
         }
         this.playerBonusData[this.currentBonusPlayerIndex] = Object.assign({}, this.bonusCounters);
+        // Store expansion counters too
+        if (!this.playerExpansionBonusData) {
+            this.playerExpansionBonusData = {};
+        }
+        this.playerExpansionBonusData[this.currentBonusPlayerIndex] = Object.assign({}, this.expansionBonusCounters);
         // Trigger the update with the new bonus value
         this.updateRoundScoreByIndex(this.currentBonusPlayerIndex);
         // Close modal
